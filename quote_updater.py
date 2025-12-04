@@ -6,22 +6,37 @@ import glob
 project_dir = os.path.dirname(os.path.abspath(__file__))
 
 # Configuration: Select franchise
-SELECTED_FRANCHISE = "mass_effect"
+# Set to "all" to use all franchises, or specify one: "mass_effect", "south_park", "spongebob"
+SELECTED_FRANCHISE = "all"
 
 # Construct paths
 collection_dir = os.path.join(project_dir, "collection")
-franchise_dir = os.path.join(collection_dir, SELECTED_FRANCHISE)
 readme_file = os.path.join(project_dir, "README.md")
 
-# Find all character directories in the selected franchise
-character_dirs = [d for d in glob.glob(os.path.join(franchise_dir, "*")) if os.path.isdir(d)]
+# Find character directories based on selection
+if SELECTED_FRANCHISE == "all":
+    # Find all franchise directories
+    franchise_dirs = [d for d in glob.glob(os.path.join(collection_dir, "*")) if os.path.isdir(d)]
+    # Find all character directories across all franchises
+    character_dirs = []
+    for franchise_dir in franchise_dirs:
+        character_dirs.extend([d for d in glob.glob(os.path.join(franchise_dir, "*")) if os.path.isdir(d)])
+else:
+    # Use only the selected franchise
+    franchise_dir = os.path.join(collection_dir, SELECTED_FRANCHISE)
+    character_dirs = [d for d in glob.glob(os.path.join(franchise_dir, "*")) if os.path.isdir(d)]
 
 if not character_dirs:
-    print(f"No character directories found in {SELECTED_FRANCHISE}")
+    if SELECTED_FRANCHISE == "all":
+        print("No character directories found in any franchise")
+    else:
+        print(f"No character directories found in {SELECTED_FRANCHISE}")
     exit(1)
 
 # Choose a random character
 selected_character_dir = random.choice(character_dirs)
+# Extract franchise name from path for display and icon path
+franchise_name = os.path.basename(os.path.dirname(selected_character_dir))
 quotes_file = os.path.join(selected_character_dir, "quotes.txt")
 icon_file = os.path.join(selected_character_dir, "icon.png")
 
@@ -50,7 +65,7 @@ if not quotes:
 quote = random.choice(quotes)
 
 # Check if icon exists
-icon_path_relative = f"collection/{SELECTED_FRANCHISE}/{os.path.basename(selected_character_dir)}/icon.png"
+icon_path_relative = f"collection/{franchise_name}/{os.path.basename(selected_character_dir)}/icon.png"
 if not os.path.exists(icon_file):
     icon_path_relative = ""  # No icon available
 
@@ -97,5 +112,5 @@ else:
 with open(readme_file, "w", encoding="utf-8") as readme:
     readme.write(new_content)
 
-print(f"Successfully updated README.md with quote from {author} ({SELECTED_FRANCHISE})")
+print(f"Successfully updated README.md with quote from {author} ({franchise_name})")
 print(f"Quote: \"{quote}\"")

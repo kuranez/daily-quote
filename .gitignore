@@ -1,0 +1,5 @@
+icons_raw/
+icons_scaled/
+__pycache__/
+*.pyc
+.DS_Store

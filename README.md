@@ -61,7 +61,7 @@ Example:
 3. Create a README.md with `<!--QUOTE_START-->` and `<!--QUOTE_END-->` markers
 4. Push to GitHub and enable GitHub Actions
 
-## Current Quote
+## Example Quote
 
 <!--QUOTE_START-->
 <div align="center">

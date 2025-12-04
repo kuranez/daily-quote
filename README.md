@@ -34,7 +34,7 @@ To manually trigger an update:
 Edit `quote_updater.py` to change the franchise:
 
 ```python
-SELECTED_FRANCHISE = "mass_effect"  # Options: "mass_effect", "south_park", "spongebob"
+SELECTED_FRANCHISE = "mass_effect"  # Options: "all", "mass_effect", "south_park", "spongebob"
 ```
 
 ### Adding New Quotes

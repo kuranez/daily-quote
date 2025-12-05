@@ -5,16 +5,18 @@ import glob
 # Define the absolute path to the project directory
 project_dir = os.path.dirname(os.path.abspath(__file__))
 
-# Configuration: Select franchise
-# Set to "all" to use all franchises, or specify one: "mass_effect", "south_park", "spongebob"
-SELECTED_FRANCHISE = "all"
+# Configuration: Select franchises
+# OPTIONS = ["all", ["south_park"], ["spongebob"], ["mass_effect"]]
+# Set to "all" to use all franchises, or list specific ones: ["south_park", "spongebob"]
+# Single franchise: ["mass_effect"]
+SELECTED_FRANCHISES = ["all"]
 
 # Construct paths
 collection_dir = os.path.join(project_dir, "collection")
 readme_file = os.path.join(project_dir, "README.md")
 
 # Find character directories based on selection
-if SELECTED_FRANCHISE == "all":
+if SELECTED_FRANCHISES == "all":
     # Find all franchise directories
     franchise_dirs = [d for d in glob.glob(os.path.join(collection_dir, "*")) if os.path.isdir(d)]
     # Find all character directories across all franchises
@@ -22,15 +24,18 @@ if SELECTED_FRANCHISE == "all":
     for franchise_dir in franchise_dirs:
         character_dirs.extend([d for d in glob.glob(os.path.join(franchise_dir, "*")) if os.path.isdir(d)])
 else:
-    # Use only the selected franchise
-    franchise_dir = os.path.join(collection_dir, SELECTED_FRANCHISE)
-    character_dirs = [d for d in glob.glob(os.path.join(franchise_dir, "*")) if os.path.isdir(d)]
+    # Use only selected franchises
+    character_dirs = []
+    for franchise_name in SELECTED_FRANCHISES:
+        franchise_dir = os.path.join(collection_dir, franchise_name)
+        if os.path.isdir(franchise_dir):
+            character_dirs.extend([d for d in glob.glob(os.path.join(franchise_dir, "*")) if os.path.isdir(d)])
 
 if not character_dirs:
-    if SELECTED_FRANCHISE == "all":
+    if SELECTED_FRANCHISES == "all":
         print("No character directories found in any franchise")
     else:
-        print(f"No character directories found in {SELECTED_FRANCHISE}")
+        print(f"No character directories found in {', '.join(SELECTED_FRANCHISES)}")
     exit(1)
 
 # Choose a random character

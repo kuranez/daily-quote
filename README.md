@@ -31,11 +31,17 @@ To manually trigger an update:
 
 ### Configuration
 
-Edit `quote_updater.py` to change the franchise:
+Edit `quote_updater.py` to select franchises:
 
 ```python
-SELECTED_FRANCHISE = "mass_effect"  # Options: "all", "mass_effect", "south_park", "spongebob"
+SELECTED_FRANCHISES = ["all"]  # All franchises
+# OR
+SELECTED_FRANCHISES = ["south_park", "spongebob"]  # Multiple franchises
+# OR
+SELECTED_FRANCHISES = ["mass_effect"]  # Single franchise
 ```
+
+Available franchises: `mass_effect`, `south_park`, `spongebob`
 
 ### Adding New Quotes
 
@@ -60,6 +66,31 @@ Example:
    - `.github/workflows/update-quote.yml`
 3. Create a README.md with `<!--QUOTE_START-->` and `<!--QUOTE_END-->` markers
 4. Push to GitHub and enable GitHub Actions
+
+### Sync Workflow (Optional)
+
+To automatically sync updates from this repository to your profile repository:
+
+1. **Create a Personal Access Token (PAT)**:
+   - Go to: https://github.com/settings/tokens
+   - Click "Generate new token" → "Generate new token (classic)"
+   - Name: `Workflow Sync Token`
+   - Select scopes: `repo` and `workflow`
+   - Generate and copy the token
+
+2. **Add the token as a secret**:
+   - Go to your profile repository settings: `https://github.com/[username]/[username]/settings/secrets/actions`
+   - Click "New repository secret"
+   - Name: `PAT_TOKEN`
+   - Value: paste your token
+   - Click "Add secret"
+
+3. **Copy the sync workflow**:
+   - Copy `.github/workflows/sync-from-daily-quote.yml` to your profile repository
+   - The workflow will automatically sync `quote_updater.py` and `update-quote.yml` daily at 01:00 UTC
+   - You can also manually trigger it from the Actions tab
+
+This keeps your profile repository automatically updated with the latest script improvements and fixes from this repository, while preserving your own README.md.
 
 ## Example Quote
 

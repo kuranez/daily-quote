@@ -106,6 +106,10 @@ To automatically sync updates from this repository to your profile repository:
 
 This keeps your profile repository automatically updated with the latest script improvements and fixes from this repository, while preserving your own README.md.
 
+## Troubleshooting
+
+**Workflow fails with permission error**: Go to your repository Settings → Actions → General → Workflow permissions and select "Read and write permissions".
+
 ## Example Quote
 
 <!--QUOTE_START-->

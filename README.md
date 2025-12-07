@@ -64,7 +64,21 @@ Example:
    - `quote_updater.py`
    - `collection/` folder
    - `.github/workflows/update-quote.yml`
-3. Create a README.md with `<!--QUOTE_START-->` and `<!--QUOTE_END-->` markers
+3. Create a README.md with `<!--QUOTE_START-->
+<div align="center">
+  <table>
+    <tr>
+      <td>
+        <img src="collection/south_park/eric_cartman/icon.png" alt="Eric Cartman" width="100" height="100">
+      </td>
+      <td>
+        <p style="font-size: 18px; color: #58A6FF; margin: 0;">Respect my authoritah!</p>
+        <p style="font-size: 14px; color: #8B949E; margin: 5px 0 0 0;">— Eric Cartman</p>
+      </td>
+    </tr>
+  </table>
+</div>
+<!--QUOTE_END-->` markers
 4. Push to GitHub and enable GitHub Actions
 
 ### Sync Workflow (Optional)

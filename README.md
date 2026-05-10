@@ -69,11 +69,11 @@ Example:
   <table>
     <tr>
       <td>
-        <img src="collection/mass_effect/reapers/icon.png" alt="Reapers" width="100" height="100">
+        <img src="collection/spongebob/patrick/icon.png" alt="Patrick" width="100" height="100">
       </td>
       <td>
-        <p style="font-size: 18px; color: #58A6FF; margin: 0;">We are the end of everything.</p>
-        <p style="font-size: 14px; color: #8B949E; margin: 5px 0 0 0;">— Reapers</p>
+        <p style="font-size: 18px; color: #58A6FF; margin: 0;">It’s what’s on the inside that counts... not!</p>
+        <p style="font-size: 14px; color: #8B949E; margin: 5px 0 0 0;">— Patrick</p>
       </td>
     </tr>
   </table>
